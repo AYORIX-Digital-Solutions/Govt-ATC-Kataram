@@ -18,7 +18,28 @@ export default async function handler(
 
     const data = await response.json();
 
-    res.status(200).json(data);
+    const notices = data.map((notice: any) => ({
+      id: String(
+        notice.id ??
+          notice.ID ??
+          notice.Date ??
+          notice.date ??
+          "",
+      ),
+      date: notice.Date ?? notice.date ?? "",
+      category:
+        notice.Category ??
+        notice.category ??
+        "General",
+      title: notice.Title ?? notice.title ?? "",
+      description:
+        notice.Description ??
+        notice.description ??
+        "",
+      link: notice.Link ?? notice.link ?? "",
+    }));
+
+    res.status(200).json(notices);
   } catch (error) {
     console.error("Notice API error:", error);
 
