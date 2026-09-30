@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 const navItems = [
-   { label: "Home", href: "#home" },
+  { label: "Home", href: "#top" },
   { label: "About", href: "#about" },
   { label: "Courses", href: "#trades" },
   { label: "Admissions", href: "#admissions" },
@@ -22,10 +22,33 @@ function Navbar() {
 
   const scrollTo = (href: string) => {
     setOpen(false);
-    document.querySelector(href)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+
+    window.setTimeout(() => {
+      const target = document.getElementById(
+        href.replace("#", ""),
+      );
+
+      if (!target) {
+        return;
+      }
+
+      const navbar = document.querySelector(
+        ".main-navbar",
+      ) as HTMLElement | null;
+
+      const navbarHeight = navbar?.offsetHeight ?? 0;
+
+      const targetPosition =
+        target.getBoundingClientRect().top +
+        window.scrollY -
+        navbarHeight -
+        16;
+
+      window.scrollTo({
+        top: Math.max(0, targetPosition),
+        behavior: "smooth",
+      });
+    }, 50);
   };
 
   return (
@@ -53,7 +76,6 @@ function Navbar() {
         }}
       >
         <div className="nav-container nav-inner">
-
           {/* Brand */}
           <motion.button
             className="brand"
@@ -99,8 +121,14 @@ function Navbar() {
                 key={item.href}
                 className="nav-link"
                 onClick={() => scrollTo(item.href)}
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{
+                  opacity: 0,
+                  y: -8,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
                 transition={{
                   delay: 0.25 + index * 0.055,
                   duration: 0.4,
@@ -113,8 +141,14 @@ function Navbar() {
             <motion.button
               className="nav-cta"
               onClick={() => scrollTo("#trades")}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{
+                opacity: 0,
+                x: 10,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
               transition={{
                 delay: 0.55,
                 duration: 0.5,
@@ -130,11 +164,22 @@ function Navbar() {
           {/* Mobile menu button */}
           <motion.button
             className="mobile-menu-btn"
-            onClick={() => setOpen((value) => !value)}
+            onClick={() =>
+              setOpen((value) => !value)
+            }
             whileTap={{ scale: 0.92 }}
-            aria-label="Toggle navigation"
+            aria-label={
+              open
+                ? "Close navigation"
+                : "Open navigation"
+            }
+            aria-expanded={open}
           >
-            {open ? <X size={22} /> : <Menu size={22} />}
+            {open ? (
+              <X size={22} />
+            ) : (
+              <Menu size={22} />
+            )}
           </motion.button>
         </div>
 
@@ -143,35 +188,60 @@ function Navbar() {
           {open && (
             <motion.div
               className="mobile-menu"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
+              initial={{
+                height: 0,
+                opacity: 0,
+              }}
+              animate={{
+                height: "auto",
+                opacity: 1,
+              }}
+              exit={{
+                height: 0,
+                opacity: 0,
+              }}
               transition={{
                 duration: 0.35,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
               <div className="mobile-menu-inner">
-                {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.href}
-                    className="mobile-nav-link"
-                    onClick={() => scrollTo(item.href)}
-                    initial={{ opacity: 0, x: -15 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: index * 0.045,
-                    }}
-                  >
-                    <span>{item.label}</span>
-                    <ChevronDown size={16} />
-                  </motion.button>
-                ))}
+                {navItems.map(
+                  (item, index) => (
+                    <motion.button
+                      key={item.href}
+                      className="mobile-nav-link"
+                      onClick={() =>
+                        scrollTo(item.href)
+                      }
+                      initial={{
+                        opacity: 0,
+                        x: -15,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                      }}
+                      transition={{
+                        delay: index * 0.045,
+                      }}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown
+                        size={16}
+                      />
+                    </motion.button>
+                  ),
+                )}
 
                 <motion.button
                   className="mobile-nav-cta"
-                  onClick={() => scrollTo("#trades")}
-                  whileTap={{ scale: 0.98 }}
+                  onClick={() =>
+                    scrollTo("#trades")
+                  }
+                  whileTap={{
+                    scale: 0.98,
+                  }}
                 >
                   Explore Courses
                   <ArrowRight size={17} />
