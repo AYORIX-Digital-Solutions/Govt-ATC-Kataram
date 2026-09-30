@@ -22,18 +22,18 @@ function Hero() {
 
   return (
     <section id="top" className="hero-section">
-
       {/* Decorative background lines */}
-      <div className="hero-grid-lines" aria-hidden="true">
+      <div
+        className="hero-grid-lines"
+        aria-hidden="true"
+      >
         <span />
         <span />
         <span />
       </div>
 
       <div className="hero-container">
-
         <div className="hero-layout">
-
           {/* LEFT CONTENT */}
           <motion.div
             className="hero-content"
@@ -52,7 +52,10 @@ function Hero() {
             <motion.div
               className="hero-eyebrow"
               variants={{
-                hidden: { opacity: 0, x: -18 },
+                hidden: {
+                  opacity: 0,
+                  x: -18,
+                },
                 show: {
                   opacity: 1,
                   x: 0,
@@ -69,7 +72,10 @@ function Hero() {
 
             <motion.h1
               variants={{
-                hidden: { opacity: 0, y: 25 },
+                hidden: {
+                  opacity: 0,
+                  y: 25,
+                },
                 show: {
                   opacity: 1,
                   y: 0,
@@ -80,14 +86,17 @@ function Hero() {
                 },
               }}
             >
-               Learn advanced
+              Learn advanced
               <span> technologies. Build your future.</span>
             </motion.h1>
 
             <motion.p
               className="hero-description"
               variants={{
-                hidden: { opacity: 0, y: 18 },
+                hidden: {
+                  opacity: 0,
+                  y: 18,
+                },
                 show: {
                   opacity: 1,
                   y: 0,
@@ -106,7 +115,10 @@ function Hero() {
             <motion.div
               className="hero-actions"
               variants={{
-                hidden: { opacity: 0, y: 15 },
+                hidden: {
+                  opacity: 0,
+                  y: 15,
+                },
                 show: {
                   opacity: 1,
                   y: 0,
@@ -116,20 +128,23 @@ function Hero() {
                 },
               }}
             >
-              <motion.button
+              <motion.a
+                href="#trades"
                 className="hero-primary-btn"
                 onClick={scrollToCourses}
                 whileHover={{
                   y: -3,
-                  boxShadow: "0 14px 30px rgba(25, 47, 79, 0.18)",
+                  boxShadow:
+                    "0 14px 30px rgba(25, 47, 79, 0.18)",
                 }}
                 whileTap={{ scale: 0.97 }}
               >
                 Explore Courses
                 <ArrowRight size={17} />
-              </motion.button>
+              </motion.a>
 
-              <motion.button
+              <motion.a
+                href="#about"
                 className="hero-secondary-btn"
                 onClick={scrollToAbout}
                 whileHover={{ x: 4 }}
@@ -137,14 +152,16 @@ function Hero() {
               >
                 About the Centre
                 <ArrowRight size={16} />
-              </motion.button>
+              </motion.a>
             </motion.div>
 
             {/* Quick information */}
             <motion.div
               className="hero-meta"
               variants={{
-                hidden: { opacity: 0 },
+                hidden: {
+                  opacity: 0,
+                },
                 show: {
                   opacity: 1,
                   transition: {
@@ -158,11 +175,16 @@ function Hero() {
                 <span>NSQF-aligned training</span>
               </div>
 
-              <div className="hero-meta-divider" />
+              <div
+                className="hero-meta-divider"
+                aria-hidden="true"
+              />
 
               <div className="hero-meta-item">
                 <Wrench size={17} />
-                <span>Hands-on practical learning</span>
+                <span>
+                  Hands-on practical learning
+                </span>
               </div>
             </motion.div>
           </motion.div>
@@ -187,10 +209,12 @@ function Hero() {
             }}
           >
             <div className="hero-image-frame">
-
               <motion.img
                 src="/images/hero.webp"
-                alt="Government ATC Kataram"
+                alt="Government ATC Kataram advanced technology training centre"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 initial={{ scale: 1.08 }}
                 animate={{ scale: 1 }}
                 transition={{
@@ -200,7 +224,10 @@ function Hero() {
                 }}
               />
 
-              <div className="hero-image-overlay" />
+              <div
+                className="hero-image-overlay"
+                aria-hidden="true"
+              />
 
               {/* Location card */}
               <motion.div
@@ -224,7 +251,9 @@ function Hero() {
 
                 <div>
                   <span>LOCATED AT</span>
-                  <strong>Kataram, Telangana</strong>
+                  <strong>
+                    Kataram, Telangana
+                  </strong>
                 </div>
               </motion.div>
 
@@ -234,6 +263,7 @@ function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.9 }}
+                aria-hidden="true"
               >
                 <span>01</span>
                 <i />
@@ -275,6 +305,7 @@ function Hero() {
           </div>
 
           <motion.button
+            type="button"
             className="hero-scroll"
             onClick={scrollToCourses}
             whileHover={{ y: 3 }}

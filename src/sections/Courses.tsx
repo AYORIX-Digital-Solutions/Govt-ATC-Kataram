@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import {
-    BadgeCheck,
+  BadgeCheck,
   Clock3,
   GraduationCap,
 } from "lucide-react";
@@ -16,7 +16,8 @@ const courses = [
   },
   {
     number: "02",
-    title: "Industrial Robotics and Digital Manufacturing Technician",
+    title:
+      "Industrial Robotics and Digital Manufacturing Technician",
     duration: "1 Year",
     qualification: "10th Pass",
     description:
@@ -40,7 +41,8 @@ const courses = [
   },
   {
     number: "05",
-    title: "Basic Designer and Virtual Verifier (Mechanical)",
+    title:
+      "Basic Designer and Virtual Verifier (Mechanical)",
     duration: "2 Years",
     qualification: "10th Pass",
     description:
@@ -58,33 +60,49 @@ const courses = [
 
 function Courses() {
   return (
-    <section id="trades" className="courses-section">
+    <section
+      id="trades"
+      className="courses-section"
+    >
       <div className="courses-container">
-
         {/* Header */}
         <motion.div
           className="courses-header"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.65 }}
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.25,
+          }}
+          transition={{
+            duration: 0.65,
+          }}
         >
           <div>
             <div className="section-eyebrow">
               <span />
-              COURSES & TRADES
+              COURSES &amp; TRADES
             </div>
 
             <h2>
               Technical training
-              <span> for a changing world.</span>
+              <span>
+                {" "}
+                for a changing world.
+              </span>
             </h2>
           </div>
 
           <p>
-            Explore the technical trades offered at Government ATC
-            Kataram, designed around practical learning and modern
-            industrial technologies.
+            Explore the technical trades offered at Government
+            ATC Kataram, designed around practical learning and
+            modern industrial technologies.
           </p>
         </motion.div>
 
@@ -94,7 +112,9 @@ function Courses() {
             <motion.article
               key={course.number}
               className={`course-row ${
-                index === 0 ? "course-featured" : ""
+                index === 0
+                  ? "course-featured"
+                  : ""
               }`}
               initial={{
                 opacity: 0,
@@ -117,7 +137,10 @@ function Courses() {
               }}
             >
               {/* Number */}
-              <div className="course-number">
+              <div
+                className="course-number"
+                aria-hidden="true"
+              >
                 {course.number}
               </div>
 
@@ -129,21 +152,30 @@ function Courses() {
 
                 <div className="course-details">
                   <span>
-                    <Clock3 size={14} />
+                    <Clock3
+                      size={14}
+                      aria-hidden="true"
+                    />
                     {course.duration}
                   </span>
 
                   <span>
-                    <GraduationCap size={14} />
+                    <GraduationCap
+                      size={14}
+                      aria-hidden="true"
+                    />
                     {course.qualification}
                   </span>
                 </div>
               </div>
 
-             {/* Side */}
-<div className="course-side">
-   <BadgeCheck size={18} />
-</div>
+              {/* Side */}
+              <div
+                className="course-side"
+                aria-hidden="true"
+              >
+                <BadgeCheck size={18} />
+              </div>
             </motion.article>
           ))}
         </div>
@@ -151,20 +183,28 @@ function Courses() {
         {/* Eligibility note */}
         <motion.div
           className="courses-note"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.6,
+          }}
         >
           <span>ELIGIBILITY</span>
 
           <p>
             The listed courses generally require a minimum
             qualification of 10th pass. Admission is subject to
-            applicable rules and the latest official notification.
+            applicable rules and the latest official
+            notification.
           </p>
         </motion.div>
-
       </div>
     </section>
   );

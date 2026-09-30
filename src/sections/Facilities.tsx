@@ -50,9 +50,12 @@ const facilities = [
 
 function Facilities() {
   return (
-    <section id="facilities" className="facilities-section">
+    <section
+      id="facilities"
+      className="facilities-section"
+      aria-labelledby="facilities-heading"
+    >
       <div className="facilities-container">
-
         {/* Header */}
         <motion.div
           className="facilities-header"
@@ -63,11 +66,11 @@ function Facilities() {
         >
           <div>
             <div className="section-eyebrow">
-              <span />
-              FACILITIES & LABORATORIES
+              <span aria-hidden="true" />
+              FACILITIES &amp; LABORATORIES
             </div>
 
-            <h2>
+            <h2 id="facilities-heading">
               Learn with modern
               <span> tools and technology.</span>
             </h2>
@@ -110,11 +113,17 @@ function Facilities() {
                 }}
               >
                 <div className="facility-top">
-                  <span className="facility-number">
+                  <span
+                    className="facility-number"
+                    aria-hidden="true"
+                  >
                     {facility.number}
                   </span>
 
-                  <div className="facility-icon">
+                  <div
+                    className="facility-icon"
+                    aria-hidden="true"
+                  >
                     <Icon size={20} />
                   </div>
                 </div>
@@ -123,7 +132,10 @@ function Facilities() {
 
                 <p>{facility.text}</p>
 
-                <div className="facility-line" />
+                <div
+                  className="facility-line"
+                  aria-hidden="true"
+                />
               </motion.article>
             );
           })}
@@ -158,10 +170,12 @@ function Facilities() {
             className="facilities-link"
           >
             View Campus
-            <ArrowUpRight size={16} />
+            <ArrowUpRight
+              size={16}
+              aria-hidden="true"
+            />
           </a>
         </motion.div>
-
       </div>
     </section>
   );

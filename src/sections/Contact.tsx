@@ -15,9 +15,12 @@ const embedUrl =
 
 export default function Contact() {
   return (
-    <section className="contact-section" id="contact">
+    <section
+      className="contact-section"
+      id="contact"
+      aria-labelledby="contact-heading"
+    >
       <div className="contact-container">
-
         {/* HEADER */}
         <motion.div
           className="contact-header"
@@ -27,11 +30,14 @@ export default function Contact() {
           transition={{ duration: 0.7 }}
         >
           <div className="section-eyebrow">
-            <span className="eyebrow-line" />
+            <span
+              className="eyebrow-line"
+              aria-hidden="true"
+            />
             FIND THE CENTRE
           </div>
 
-          <h2>
+          <h2 id="contact-heading">
             Visit Government
             <span>ATC Kataram.</span>
           </h2>
@@ -54,13 +60,16 @@ export default function Contact() {
           <div className="location-map">
             <iframe
               src={embedUrl}
-              title="Government ATC Kataram location"
+              title="Government ATC Kataram location on Google Maps"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
 
             <div className="map-overlay-label">
-              <span className="map-live-dot" />
+              <span
+                className="map-live-dot"
+                aria-hidden="true"
+              />
               GOVERNMENT ATC KATARAM
             </div>
 
@@ -74,6 +83,7 @@ export default function Contact() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
+              aria-hidden="true"
             >
               <MapPin size={21} />
             </motion.div>
@@ -81,14 +91,17 @@ export default function Contact() {
 
           {/* DETAILS */}
           <div className="location-details">
-
             <div className="location-number">
               <span>LOCATION</span>
               <strong>01</strong>
             </div>
 
             <div className="location-title">
-              <Building2 size={22} />
+              <Building2
+                size={22}
+                aria-hidden="true"
+              />
+
               <div>
                 <span>INSTITUTE</span>
                 <h3>Government ATC Kataram</h3>
@@ -96,7 +109,10 @@ export default function Contact() {
             </div>
 
             <div className="location-address">
-              <MapPin size={18} />
+              <MapPin
+                size={18}
+                aria-hidden="true"
+              />
 
               <p>
                 Near the Old Vegetable Market,
@@ -107,12 +123,21 @@ export default function Contact() {
               </p>
             </div>
 
-            <div className="location-divider" />
+            <div
+              className="location-divider"
+              aria-hidden="true"
+            />
 
             <div className="location-contact">
-
-              <a href="tel:9703113881" className="contact-detail">
-                <div className="detail-icon">
+              <a
+                href="tel:9703113881"
+                className="contact-detail"
+                aria-label="Call Government ATC Kataram at 97031 13881"
+              >
+                <div
+                  className="detail-icon"
+                  aria-hidden="true"
+                >
                   <Phone size={16} />
                 </div>
 
@@ -125,17 +150,23 @@ export default function Contact() {
               <a
                 href={mapUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="directions-button"
+                aria-label="Open Government ATC Kataram in Google Maps"
               >
                 <span>
-                  <Navigation size={15} />
+                  <Navigation
+                    size={15}
+                    aria-hidden="true"
+                  />
                   Open in Google Maps
                 </span>
 
-                <ArrowUpRight size={17} />
+                <ArrowUpRight
+                  size={17}
+                  aria-hidden="true"
+                />
               </a>
-
             </div>
           </div>
         </motion.div>
@@ -168,7 +199,6 @@ export default function Contact() {
             <strong>505503</strong>
           </div>
         </motion.div>
-
       </div>
     </section>
   );

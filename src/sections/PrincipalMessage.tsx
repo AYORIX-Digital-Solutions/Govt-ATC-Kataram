@@ -6,7 +6,11 @@ const message =
 
 export default function PrincipalMessage() {
   return (
-    <section className="principal-section" id="principal">
+    <section
+      className="principal-section"
+      id="principal"
+      aria-labelledby="principal-heading"
+    >
       <div className="principal-container">
         <motion.div
           className="principal-image-wrap"
@@ -19,6 +23,8 @@ export default function PrincipalMessage() {
             <img
               src="/images/principal.jpeg"
               alt="G. Srinivas, Principal of Government ATC Kataram"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -33,16 +39,28 @@ export default function PrincipalMessage() {
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          transition={{
+            duration: 0.7,
+            delay: 0.1,
+            ease: "easeOut",
+          }}
         >
           <div className="section-eyebrow">
-            <span className="eyebrow-line" />
+            <span
+              className="eyebrow-line"
+              aria-hidden="true"
+            />
             PRINCIPAL'S MESSAGE
           </div>
 
           <div className="principal-heading">
-            <Quote size={32} strokeWidth={1.4} />
-            <h2>
+            <Quote
+              size={32}
+              strokeWidth={1.4}
+              aria-hidden="true"
+            />
+
+            <h2 id="principal-heading">
               Building skills
               <span>for a better future.</span>
             </h2>
@@ -86,7 +104,10 @@ export default function PrincipalMessage() {
               whileTap={{ scale: 0.98 }}
             >
               Contact the Centre
-              <ArrowUpRight size={16} />
+              <ArrowUpRight
+                size={16}
+                aria-hidden="true"
+              />
             </motion.a>
           </div>
         </motion.div>

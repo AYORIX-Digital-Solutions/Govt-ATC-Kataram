@@ -36,9 +36,12 @@ const steps = [
 
 function Admissions() {
   return (
-    <section id="admissions" className="admissions-section">
+    <section
+      id="admissions"
+      className="admissions-section"
+      aria-labelledby="admissions-heading"
+    >
       <div className="admissions-container">
-
         <motion.div
           className="admissions-header"
           initial={{ opacity: 0, y: 25 }}
@@ -48,11 +51,11 @@ function Admissions() {
         >
           <div>
             <div className="section-eyebrow">
-              <span />
+              <span aria-hidden="true" />
               ADMISSIONS
             </div>
 
-            <h2>
+            <h2 id="admissions-heading">
               Start your journey
               <span> with the right information.</span>
             </h2>
@@ -70,7 +73,7 @@ function Admissions() {
             const Icon = step.icon;
 
             return (
-              <motion.div
+              <motion.article
                 key={step.number}
                 className="admission-step"
                 initial={{ opacity: 0, y: 25 }}
@@ -82,11 +85,17 @@ function Admissions() {
                 }}
               >
                 <div className="admission-step-top">
-                  <span className="admission-number">
+                  <span
+                    className="admission-number"
+                    aria-hidden="true"
+                  >
                     {step.number}
                   </span>
 
-                  <div className="admission-icon">
+                  <div
+                    className="admission-icon"
+                    aria-hidden="true"
+                  >
                     <Icon size={19} />
                   </div>
                 </div>
@@ -94,7 +103,7 @@ function Admissions() {
                 <h3>{step.title}</h3>
 
                 <p>{step.text}</p>
-              </motion.div>
+              </motion.article>
             );
           })}
         </div>
@@ -121,10 +130,9 @@ function Admissions() {
             className="admissions-link"
           >
             Contact the Centre
-            <ArrowUpRight size={16} />
+            <ArrowUpRight size={16} aria-hidden="true" />
           </a>
         </motion.div>
-
       </div>
     </section>
   );

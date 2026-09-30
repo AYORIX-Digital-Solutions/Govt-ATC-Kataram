@@ -27,16 +27,29 @@ const highlights = [
 
 function About() {
   return (
-    <section id="about" className="about-section">
+    <section
+      id="about"
+      className="about-section"
+    >
       <div className="about-container">
-
         {/* Section heading */}
         <motion.div
           className="about-heading"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.65 }}
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.25,
+          }}
+          transition={{
+            duration: 0.65,
+          }}
         >
           <div className="section-eyebrow">
             <span />
@@ -51,13 +64,23 @@ function About() {
 
         {/* Main content */}
         <div className="about-main">
-
           <motion.div
             className="about-intro"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7 }}
+            initial={{
+              opacity: 0,
+              x: -30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.25,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
           >
             <p className="about-lead">
               The Advanced Technology Centre (ATC) is a
@@ -75,22 +98,19 @@ function About() {
 
             <p>
               The objective is to prepare students with the
-              technical knowledge, practical skills and workplace
-              discipline required by modern industries.
+              technical knowledge, practical skills and
+              workplace discipline required by modern
+              industries.
             </p>
 
-            <motion.button
-  className="hero-btn hero-btn-primary"
-  whileTap={{ scale: 0.98 }}
-  onClick={() =>
-    document.querySelector("#trades")?.scrollIntoView({
-      behavior: "smooth",
-    })
-  }
->
-  Explore technical courses
-  <ArrowUpRight size={17} />
-</motion.button>
+            <motion.a
+              href="#trades"
+              className="hero-btn hero-btn-primary"
+              whileTap={{ scale: 0.98 }}
+            >
+              Explore technical courses
+              <ArrowUpRight size={17} />
+            </motion.a>
           </motion.div>
 
           {/* Highlights */}
@@ -144,12 +164,25 @@ function About() {
         {/* Bottom statement */}
         <motion.div
           className="about-statement"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.7,
+          }}
         >
-          <div className="about-statement-line" />
+          <div
+            className="about-statement-line"
+            aria-hidden="true"
+          />
 
           <p>
             The ATC aims to bridge the gap between technical
@@ -157,7 +190,6 @@ function About() {
             hands-on training and modern technology.
           </p>
         </motion.div>
-
       </div>
     </section>
   );

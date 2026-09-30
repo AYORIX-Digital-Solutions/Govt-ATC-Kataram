@@ -76,9 +76,12 @@ function Notices() {
   }, []);
 
   return (
-    <section id="notices" className="notices-section">
+    <section
+      id="notices"
+      className="notices-section"
+      aria-labelledby="notices-heading"
+    >
       <div className="notices-container">
-
         {/* Header */}
         <motion.div
           className="notices-header"
@@ -94,11 +97,11 @@ function Notices() {
         >
           <div>
             <div className="section-eyebrow">
-              <span />
+              <span aria-hidden="true" />
               NOTICE BOARD
             </div>
 
-            <h2>
+            <h2 id="notices-heading">
               Latest updates
               <span> from the centre.</span>
             </h2>
@@ -112,22 +115,31 @@ function Notices() {
 
         {/* Loading */}
         {loading && (
-          <div className="notices-state">
+          <div
+            className="notices-state"
+            role="status"
+            aria-live="polite"
+          >
             <RefreshCw
               size={20}
               className="notice-loading-icon"
+              aria-hidden="true"
             />
 
-            <p>
-              Loading latest notices...
-            </p>
+            <p>Loading latest notices...</p>
           </div>
         )}
 
         {/* Error */}
         {!loading && error && (
-          <div className="notices-state">
-            <FileText size={22} />
+          <div
+            className="notices-state"
+            role="alert"
+          >
+            <FileText
+              size={22}
+              aria-hidden="true"
+            />
 
             <p>
               Notices could not be loaded right now.
@@ -150,7 +162,10 @@ function Notices() {
           !error &&
           notices.length === 0 && (
             <div className="notices-state">
-              <FileText size={22} />
+              <FileText
+                size={22}
+                aria-hidden="true"
+              />
 
               <p>
                 Important notices and updates
@@ -164,7 +179,10 @@ function Notices() {
         {!loading &&
           !error &&
           notices.length > 0 && (
-            <div className="notices-board">
+            <div
+              className="notices-board"
+              aria-live="polite"
+            >
               {notices
                 .slice(0, 6)
                 .map((notice, index) => (
@@ -191,17 +209,17 @@ function Notices() {
                       delay: index * 0.06,
                     }}
                   >
-
                     {/* Date */}
                     <div className="notice-row-date">
-                      <span>
+                      <time
+                        dateTime={notice.date}
+                      >
                         {formatDate(notice.date)}
-                      </span>
+                      </time>
                     </div>
 
                     {/* Content */}
                     <div className="notice-row-content">
-
                       <div className="notice-row-meta">
                         <span>
                           {notice.category}
@@ -214,16 +232,13 @@ function Notices() {
                         )}
                       </div>
 
-                      <h3>
-                        {notice.title}
-                      </h3>
+                      <h3>{notice.title}</h3>
 
                       {notice.description && (
                         <p>
                           {notice.description}
                         </p>
                       )}
-
                     </div>
 
                     {/* Action */}
@@ -237,17 +252,17 @@ function Notices() {
                         >
                           <ArrowUpRight
                             size={18}
+                            aria-hidden="true"
                           />
                         </a>
                       ) : (
-                        <span>
-                          <FileText
-                            size={17}
-                          />
+                        <span
+                          aria-hidden="true"
+                        >
+                          <FileText size={17} />
                         </span>
                       )}
                     </div>
-
                   </motion.article>
                 ))}
             </div>
@@ -272,7 +287,10 @@ function Notices() {
                 duration: 0.5,
               }}
             >
-              <span className="notices-status-dot" />
+              <span
+                className="notices-status-dot"
+                aria-hidden="true"
+              />
 
               <p>
                 Notice information is updated
@@ -281,7 +299,6 @@ function Notices() {
               </p>
             </motion.div>
           )}
-
       </div>
     </section>
   );
