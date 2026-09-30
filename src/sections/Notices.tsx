@@ -56,13 +56,22 @@ function Notices() {
 
       const sortedNotices = data
         .filter((notice) => notice.title?.trim())
-        .sort(
-          (a, b) =>
+        .sort((a, b) => {
+          const dateDifference =
             new Date(b.date).getTime() -
-            new Date(a.date).getTime(),
-        );
+            new Date(a.date).getTime();
 
-      // Show only the latest notice
+          if (dateDifference !== 0) {
+            return dateDifference;
+          }
+
+          return (
+            new Date(b.id || "").getTime() -
+            new Date(a.id || "").getTime()
+          );
+        });
+
+      // Display only the latest notice
       setNotices(sortedNotices.slice(0, 1));
     } catch (err) {
       console.error("Notice fetch error:", err);
@@ -214,9 +223,7 @@ function Notices() {
                   {/* Content */}
                   <div className="notice-row-content">
                     <div className="notice-row-meta">
-                      <span>
-                        {notice.category}
-                      </span>
+                      <span>{notice.category}</span>
 
                       <strong>NEW</strong>
                     </div>
@@ -253,7 +260,7 @@ function Notices() {
             </div>
           )}
 
-        {/* Footer status */}
+        {/* Footer Status */}
         {!loading &&
           !error &&
           notices.length > 0 && (
