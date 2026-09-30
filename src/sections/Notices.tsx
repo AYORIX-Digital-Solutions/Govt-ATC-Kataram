@@ -62,7 +62,8 @@ function Notices() {
             new Date(a.date).getTime(),
         );
 
-      setNotices(sortedNotices);
+      // Show only the latest notice
+      setNotices(sortedNotices.slice(0, 1));
     } catch (err) {
       console.error("Notice fetch error:", err);
       setError(true);
@@ -175,7 +176,7 @@ function Notices() {
             </div>
           )}
 
-        {/* Notice list */}
+        {/* Latest Notice */}
         {!loading &&
           !error &&
           notices.length > 0 && (
@@ -183,88 +184,72 @@ function Notices() {
               className="notices-board"
               aria-live="polite"
             >
-              {notices
-                .slice(0, 6)
-                .map((notice, index) => (
-                  <motion.article
-                    key={
-                      notice.id ||
-                      `${notice.title}-${index}`
-                    }
-                    className="notice-row"
-                    initial={{
-                      opacity: 0,
-                      x: 20,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                      amount: 0.15,
-                    }}
-                    transition={{
-                      duration: 0.45,
-                      delay: index * 0.06,
-                    }}
-                  >
-                    {/* Date */}
-                    <div className="notice-row-date">
-                      <time
-                        dateTime={notice.date}
+              {notices.map((notice) => (
+                <motion.article
+                  key={notice.id || notice.title}
+                  className="notice-row"
+                  initial={{
+                    opacity: 0,
+                    x: 20,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                    amount: 0.15,
+                  }}
+                  transition={{
+                    duration: 0.45,
+                  }}
+                >
+                  {/* Date */}
+                  <div className="notice-row-date">
+                    <time dateTime={notice.date}>
+                      {formatDate(notice.date)}
+                    </time>
+                  </div>
+
+                  {/* Content */}
+                  <div className="notice-row-content">
+                    <div className="notice-row-meta">
+                      <span>
+                        {notice.category}
+                      </span>
+
+                      <strong>NEW</strong>
+                    </div>
+
+                    <h3>{notice.title}</h3>
+
+                    {notice.description && (
+                      <p>{notice.description}</p>
+                    )}
+                  </div>
+
+                  {/* Action */}
+                  <div className="notice-row-action">
+                    {notice.link ? (
+                      <a
+                        href={notice.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${notice.title}`}
                       >
-                        {formatDate(notice.date)}
-                      </time>
-                    </div>
-
-                    {/* Content */}
-                    <div className="notice-row-content">
-                      <div className="notice-row-meta">
-                        <span>
-                          {notice.category}
-                        </span>
-
-                        {index === 0 && (
-                          <strong>
-                            NEW
-                          </strong>
-                        )}
-                      </div>
-
-                      <h3>{notice.title}</h3>
-
-                      {notice.description && (
-                        <p>
-                          {notice.description}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Action */}
-                    <div className="notice-row-action">
-                      {notice.link ? (
-                        <a
-                          href={notice.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`View ${notice.title}`}
-                        >
-                          <ArrowUpRight
-                            size={18}
-                            aria-hidden="true"
-                          />
-                        </a>
-                      ) : (
-                        <span
+                        <ArrowUpRight
+                          size={18}
                           aria-hidden="true"
-                        >
-                          <FileText size={17} />
-                        </span>
-                      )}
-                    </div>
-                  </motion.article>
-                ))}
+                        />
+                      </a>
+                    ) : (
+                      <span aria-hidden="true">
+                        <FileText size={17} />
+                      </span>
+                    )}
+                  </div>
+                </motion.article>
+              ))}
             </div>
           )}
 
