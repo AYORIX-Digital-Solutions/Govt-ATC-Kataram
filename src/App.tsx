@@ -1,4 +1,5 @@
-
+import LoadingScreen from "./components/LoadingScreen";
+import "./styles/loading-screen.css";
 import Navbar from "./components/Navbar";
 import ScrollProgress from "./components/ScrollProgress";
 import MobileCallButton from "./components/MobileCallButton";
@@ -18,8 +19,9 @@ import "./styles/mobile-call-button.css";
 function App() {
   return (
     <>
+      <LoadingScreen />
+
       <Navbar />
-      
       <ScrollProgress />
 
       <main>

@@ -1,0 +1,214 @@
+.premium-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #050505;
+
+  pointer-events: none;
+}
+
+.premium-loader-inner {
+  position: relative;
+  z-index: 3;
+
+  width: min(360px, 78vw);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================
+   LOGO ASSEMBLY
+========================================= */
+
+.assembled-logo {
+  position: relative;
+
+  width: min(190px, 48vw);
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 38px;
+}
+
+.logo-part,
+.logo-final {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.logo-part img,
+.logo-final img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/*
+  Each duplicate logo is clipped differently.
+  This creates the impression that individual
+  parts are travelling into the centre.
+*/
+
+.logo-part-top {
+  clip-path: inset(0 0 62% 0);
+}
+
+.logo-part-right {
+  clip-path: inset(0 0 0 58%);
+}
+
+.logo-part-left {
+  clip-path: inset(38% 58% 0 0);
+}
+
+.logo-part-bottom {
+  clip-path: inset(62% 0 0 0);
+}
+
+/* Final complete logo */
+
+.logo-final {
+  z-index: 10;
+}
+
+/* =========================================
+   LOADING LINE
+========================================= */
+
+.premium-loader-progress {
+  width: 100%;
+}
+
+.premium-loader-track {
+  position: relative;
+
+  width: 100%;
+  height: 1px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.premium-loader-fill {
+  position: absolute;
+  inset: 0;
+
+  transform-origin: left center;
+
+  background: #c9a45c;
+
+  box-shadow:
+    0 0 12px rgba(201, 164, 92, 0.32);
+}
+
+.premium-loader-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 11px;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  letter-spacing: 0.18em;
+
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.premium-loader-meta span:last-child {
+  color: rgba(201, 164, 92, 0.82);
+
+  letter-spacing: 0.08em;
+}
+
+/* =========================================
+   CINEMATIC LIGHT SWEEP
+========================================= */
+
+.premium-loader-sweep {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  width: 24vw;
+  min-width: 180px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(201, 164, 92, 0.025),
+      transparent
+    );
+
+  filter: blur(18px);
+
+  pointer-events: none;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .premium-loader-inner {
+    width: 78vw;
+  }
+
+  .assembled-logo {
+    width: min(165px, 46vw);
+    margin-bottom: 32px;
+  }
+
+  .premium-loader-meta {
+    font-size: 7px;
+    letter-spacing: 0.14em;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-loader,
+  .premium-loader * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
